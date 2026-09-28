@@ -1,0 +1,40 @@
+$kind: http-example
+request:
+  url: " http://localhost:8080/recipients/1"
+  method: PUT
+  body:
+    type: json
+    content: "{\r
+
+      \    \"name\": \"Helping Hands\",\r
+
+      \    \"organizationName\": \"Helping Hands Foundation\",\r
+
+      \    \"contactPerson\": \"Ravi Kumar\",\r
+
+      \    \"phone\": \"9876543213\",\r
+
+      \    \"address\": \"Coimbatore\"\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: application/json
+    content-length: "159"
+    date: Mon, 28 Sep 2026 07:47:38 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "recipientId": 1,
+        "name": "Helping Hands",
+        "organizationName": "Helping Hands Foundation",
+        "contactPerson": "Ravi Kumar",
+        "phone": "9876543213",
+        "address": "Coimbatore"
+      }
+order: 1790581664153

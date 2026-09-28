@@ -1,0 +1,27 @@
+$kind: http-example
+request:
+  url: http://localhost:8080/recipients
+  method: GET
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: application/json
+    content-length: "151"
+    date: Mon, 28 Sep 2026 07:43:28 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "recipientId": 1,
+          "name": "Helping Hands",
+          "organizationName": "Helping Hands NGO",
+          "contactPerson": "Ravi Kumar",
+          "phone": "9876543212",
+          "address": "Chennai"
+        }
+      ]
+order: 1790581414029

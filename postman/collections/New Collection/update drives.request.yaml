@@ -1,0 +1,20 @@
+$kind: http-request
+url: http://localhost:8080/drives/1
+method: PUT
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Winter Clothes Drive Updated\",\r
+
+    \    \"startDate\": \"2026-09-28\",\r
+
+    \    \"endDate\": \"2026-10-15\",\r
+
+    \    \"description\": \"Updated winter clothes donation drive\",\r
+
+    \    \"recipientId\": 1\r
+
+    }"
+examples: .resources/update drives.resources/examples
+order: 4503574858298196

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonateHub - Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <span class="brand-icon">📦</span>
+                <span class="brand-name">DonateHub</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Dashboard</a></li>
+                <li><a href="/donors.html">Donors</a></li>
+                <li><a href="/recipients.html">Recipients</a></li>
+                <li><a href="/drives.html">Drives</a></li>
+                <li><a href="/donated-items.html">Donated Items</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Alert Notification Area -->
+        <div id="alert-container" class="alert-container"></div>
+
+        <!-- Page Header -->
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Community Dashboard</h1>
+                <p class="page-subtitle">Real-time overview of donation drives, donors, recipients, and distributed items.</p>
+            </div>
+            <div>
+                <button class="btn btn-secondary" onclick="loadDashboardData()">🔄 Refresh</button>
+            </div>
+        </header>
+
+        <!-- Stats Overview Cards -->
+        <section class="stats-grid">
+            <div class="stat-card primary-stat">
+                <div class="stat-header">
+                    <span class="stat-label">Total Donors</span>
+                    <span class="stat-icon">👥</span>
+                </div>
+                <div class="stat-value" id="stat-donors">-</div>
+                <a href="/donors.html" class="stat-footer">Manage donors &rarr;</a>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Total Recipients</span>
+                    <span class="stat-icon">🏢</span>
+                </div>
+                <div class="stat-value" id="stat-recipients">-</div>
+                <a href="/recipients.html" class="stat-footer">Manage recipients &rarr;</a>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Donation Drives</span>
+                    <span class="stat-icon">🎯</span>
+                </div>
+                <div class="stat-value" id="stat-drives">-</div>
+                <a href="/drives.html" class="stat-footer">View active drives &rarr;</a>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Item Types</span>
+                    <span class="stat-icon">📦</span>
+                </div>
+                <div class="stat-value" id="stat-items">-</div>
+                <a href="/donated-items.html" class="stat-footer">Catalog items &rarr;</a>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Total Quantity</span>
+                    <span class="stat-icon">📊</span>
+                </div>
+                <div class="stat-value" id="stat-quantity">-</div>
+                <span class="stat-footer" id="stat-distributed-label">0 distributed</span>
+            </div>
+        </section>
+
+        <!-- Recent Drives Section -->
+        <section class="card-section">
+            <div class="page-header" style="margin-bottom: 14px;">
+                <h2 style="font-size: 1.25rem;">Active & Recent Donation Drives</h2>
+                <a href="/drives.html" class="btn btn-sm btn-secondary">All Drives</a>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Drive Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-drives-body">
+                        <tr>
+                            <td colspan="6" class="empty-card">Loading drives...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Recent Items Section -->
+        <section class="card-section">
+            <div class="page-header" style="margin-bottom: 14px;">
+                <h2 style="font-size: 1.25rem;">Recent Donated Items</h2>
+                <a href="/donated-items.html" class="btn btn-sm btn-secondary">All Donated Items</a>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Condition</th>
+                            <th>Total Qty</th>
+                            <th>Distributed</th>
+                            <th>Remaining</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-items-body">
+                        <tr>
+                            <td colspan="7" class="empty-card">Loading items...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 DonateHub - Streamlined Donation & Distribution Management System.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/common.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

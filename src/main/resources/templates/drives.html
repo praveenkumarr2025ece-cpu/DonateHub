@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonateHub - Donation Drives</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <span class="brand-icon">📦</span>
+                <span class="brand-name">DonateHub</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/donors.html">Donors</a></li>
+                <li><a href="/recipients.html">Recipients</a></li>
+                <li><a href="/drives.html" class="active">Drives</a></li>
+                <li><a href="/donated-items.html">Donated Items</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Alert Notification Area -->
+        <div id="alert-container" class="alert-container"></div>
+
+        <!-- Page Header -->
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Donation Drives</h1>
+                <p class="page-subtitle">Organize and track campaigns, timelines, targeted recipients, and distribution summaries.</p>
+            </div>
+            <div>
+                <button class="btn btn-primary" onclick="openDriveModal()">+ Create New Drive</button>
+            </div>
+        </header>
+
+        <!-- Drives Table Section -->
+        <section class="card-section">
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Drive Name</th>
+                            <th>Recipient Partner</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Description</th>
+                            <th style="width: 220px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="drives-table-body">
+                        <tr>
+                            <td colspan="7" class="empty-card">Loading donation drives...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add/Edit Drive Modal -->
+    <div id="drive-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="drive-modal-title">Create Donation Drive</h3>
+                <button type="button" class="modal-close-btn" onclick="closeModal('drive-modal')">&times;</button>
+            </div>
+            <form id="drive-form" onsubmit="saveDrive(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="drive-id">
+
+                    <div class="form-group">
+                        <label for="drive-name">Drive Campaign Name *</label>
+                        <input type="text" id="drive-name" class="form-control" placeholder="e.g. Winter Clothing Drive 2026" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="drive-recipient-id">Target Recipient Organization *</label>
+                        <select id="drive-recipient-id" class="form-control" required>
+                            <option value="">-- Select Recipient --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="drive-start-date">Start Date *</label>
+                            <input type="date" id="drive-start-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="drive-end-date">End Date *</label>
+                            <input type="date" id="drive-end-date" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="drive-description">Description & Goals</label>
+                        <textarea id="drive-description" class="form-control" rows="3" placeholder="Targeting warm coats, blankets, and children books for winter."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('drive-modal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="drive-save-btn">Save Drive</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Drive Summary & Items Modal -->
+    <div id="drive-summary-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-card modal-lg">
+            <div class="modal-header">
+                <h3 id="summary-drive-title">Drive Distribution Summary</h3>
+                <button type="button" class="modal-close-btn" onclick="closeModal('drive-summary-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Summary Metrics Grid -->
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">Total Donated</span>
+                        <div class="detail-value" id="summary-total-qty" style="color: var(--primary); font-size: 1.25rem;">0</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Distributed</span>
+                        <div class="detail-value" id="summary-distributed-qty" style="color: var(--success); font-size: 1.25rem;">0</div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Remaining In Stock</span>
+                        <div class="detail-value" id="summary-remaining-qty" style="color: var(--text-main); font-size: 1.25rem;">0</div>
+                    </div>
+                </div>
+
+                <!-- Items in this drive -->
+                <h4 style="margin: 16px 0 10px 0; font-size: 1.05rem;">Items Assigned to this Drive</h4>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Category</th>
+                                <th>Condition</th>
+                                <th>Total</th>
+                                <th>Distributed</th>
+                                <th>Remaining</th>
+                            </tr>
+                        </thead>
+                        <tbody id="summary-items-body">
+                            <tr>
+                                <td colspan="6" class="empty-card">Loading items...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('drive-summary-modal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 DonateHub - Streamlined Donation & Distribution Management System.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/common.js"></script>
+    <script src="/js/drives.js"></script>
+</body>
+</html>

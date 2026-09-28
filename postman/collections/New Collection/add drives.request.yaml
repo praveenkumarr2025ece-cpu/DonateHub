@@ -1,0 +1,20 @@
+$kind: http-request
+url: http://localhost:8080/drives
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Winter Clothes Drive\",\r
+
+    \    \"startDate\": \"2026-09-28\",\r
+
+    \    \"endDate\": \"2026-10-10\",\r
+
+    \    \"description\": \"Collection of winter clothes for people in need\",\r
+
+    \    \"recipientId\": 1\r
+
+    }"
+examples: .resources/add drives.resources/examples
+order: 4503239533905345

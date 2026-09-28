@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DonateHub - Donated Items & Distribution</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <span class="brand-icon">📦</span>
+                <span class="brand-name">DonateHub</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/donors.html">Donors</a></li>
+                <li><a href="/recipients.html">Recipients</a></li>
+                <li><a href="/drives.html">Drives</a></li>
+                <li><a href="/donated-items.html" class="active">Donated Items</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Alert Notification Area -->
+        <div id="alert-container" class="alert-container"></div>
+
+        <!-- Page Header -->
+        <header class="page-header">
+            <div>
+                <h1 class="page-title">Donated Items & Distribution</h1>
+                <p class="page-subtitle">Track donated clothes and books, monitor inventory, and distribute stock to recipient drives.</p>
+            </div>
+            <div>
+                <button class="btn btn-primary" onclick="openItemModal()">+ Add Donated Item</button>
+            </div>
+        </header>
+
+        <!-- Donated Items Table Section -->
+        <section class="card-section">
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Item Name</th>
+                            <th>Category</th>
+                            <th>Condition</th>
+                            <th>Total Qty</th>
+                            <th>Distributed</th>
+                            <th>Remaining</th>
+                            <th>Donor</th>
+                            <th>Drive</th>
+                            <th style="width: 220px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="items-table-body">
+                        <tr>
+                            <td colspan="10" class="empty-card">Loading donated items...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add/Edit Item Modal -->
+    <div id="item-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="item-modal-title">Add Donated Item</h3>
+                <button type="button" class="modal-close-btn" onclick="closeModal('item-modal')">&times;</button>
+            </div>
+            <form id="item-form" onsubmit="saveItem(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="item-id">
+
+                    <div class="form-group">
+                        <label for="item-name">Item Name / Description *</label>
+                        <input type="text" id="item-name" class="form-control" placeholder="e.g. Children Winter Jackets" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="item-category">Category *</label>
+                            <select id="item-category" class="form-control" required>
+                                <option value="Clothes">Clothes</option>
+                                <option value="Books">Books</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="item-condition">Condition *</label>
+                            <select id="item-condition" class="form-control" required>
+                                <option value="New">New</option>
+                                <option value="Good">Good</option>
+                                <option value="Worn">Worn</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="item-quantity">Quantity Donated *</label>
+                        <input type="number" id="item-quantity" class="form-control" min="1" placeholder="e.g. 25" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="item-donor-id">Donor *</label>
+                            <select id="item-donor-id" class="form-control" required>
+                                <option value="">-- Select Donor --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="item-drive-id">Assigned Drive *</label>
+                            <select id="item-drive-id" class="form-control" required>
+                                <option value="">-- Select Drive --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('item-modal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="item-save-btn">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Distribute Item Modal -->
+    <div id="distribute-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Distribute Items</h3>
+                <button type="button" class="modal-close-btn" onclick="closeModal('distribute-modal')">&times;</button>
+            </div>
+            <form id="distribute-form" onsubmit="submitDistribution(event)">
+                <div class="modal-body">
+                    <input type="hidden" id="distribute-item-id">
+                    
+                    <div style="background: var(--bg-page); padding: 14px; border-radius: 6px; margin-bottom: 16px;">
+                        <h4 id="distribute-item-name" style="margin-bottom: 6px; font-size: 1.05rem;">-</h4>
+                        <div style="font-size: 0.9rem; color: var(--text-muted);">
+                            Available Remaining Stock: <strong id="distribute-available-stock" style="color: var(--success); font-size: 1.1rem;">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="distribute-quantity-input">Quantity to Distribute *</label>
+                        <input type="number" id="distribute-quantity-input" class="form-control" min="1" placeholder="Enter amount to hand out" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('distribute-modal')">Cancel</button>
+                    <button type="submit" class="btn btn-success">Confirm Distribution</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 DonateHub - Streamlined Donation & Distribution Management System.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/common.js"></script>
+    <script src="/js/donated-items.js"></script>
+</body>
+</html>

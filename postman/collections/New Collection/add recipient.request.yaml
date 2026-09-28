@@ -1,0 +1,20 @@
+$kind: http-request
+url: " http://localhost:8080/recipients"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Helping Hands\",\r
+
+    \    \"organizationName\": \"Helping Hands NGO\",\r
+
+    \    \"contactPerson\": \"Ravi Kumar\",\r
+
+    \    \"phone\": \"9876543212\",\r
+
+    \    \"address\": \"Chennai\"\r
+
+    }"
+examples: .resources/add recipient.resources/examples
+order: 4503598383107578

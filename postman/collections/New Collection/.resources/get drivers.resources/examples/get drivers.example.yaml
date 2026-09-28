@@ -1,0 +1,27 @@
+$kind: http-example
+request:
+  url: " http://localhost:8080/drives"
+  method: GET
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: application/json
+    content-length: "173"
+    date: Mon, 28 Sep 2026 07:34:17 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "driveId": 1,
+          "name": "Winter Clothes Drive",
+          "startDate": "2026-09-28",
+          "endDate": "2026-10-10",
+          "description": "Collection of winter clothes for people in need",
+          "recipientId": 1
+        }
+      ]
+order: 1790580862411

@@ -1,0 +1,5 @@
+$kind: http-request
+url: " http://localhost:8080/drives/1"
+method: DELETE
+examples: .resources/delete drives.resources/examples
+order: 4503576857166588

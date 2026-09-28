@@ -1,0 +1,17 @@
+$kind: http-example
+request:
+  url: " http://localhost:8080/recipients/1"
+  method: DELETE
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: text/plain;charset=UTF-8
+    content-length: "30"
+    date: Mon, 28 Sep 2026 07:49:12 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: text
+    content: Recipient deleted successfully
+order: 1790581759038

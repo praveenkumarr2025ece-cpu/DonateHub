@@ -1,0 +1,40 @@
+$kind: http-example
+request:
+  url: http://localhost:8080/drives/1
+  method: PUT
+  body:
+    type: json
+    content: "{\r
+
+      \    \"name\": \"Winter Clothes Drive Updated\",\r
+
+      \    \"startDate\": \"2026-09-28\",\r
+
+      \    \"endDate\": \"2026-10-15\",\r
+
+      \    \"description\": \"Updated winter clothes donation drive\",\r
+
+      \    \"recipientId\": 1\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: application/json
+    content-length: "169"
+    date: Mon, 28 Sep 2026 07:37:23 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "driveId": 1,
+        "name": "Winter Clothes Drive Updated",
+        "startDate": "2026-09-28",
+        "endDate": "2026-10-15",
+        "description": "Updated winter clothes donation drive",
+        "recipientId": 1
+      }
+order: 1790581048387
