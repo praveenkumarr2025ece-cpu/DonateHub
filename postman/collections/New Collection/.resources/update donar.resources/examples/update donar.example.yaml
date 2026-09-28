@@ -1,0 +1,37 @@
+$kind: http-example
+request:
+  url: " http://localhost:8080/donors/1"
+  method: PUT
+  body:
+    type: json
+    content: "{\r
+
+      \    \"name\": \"Arun Kumar Updated\",\r
+
+      \    \"email\": \"arunupdated@gmail.com\",\r
+
+      \    \"phone\": \"9876543211\",\r
+
+      \    \"address\": \"Coimbatore\"\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: application/json
+    content-length: "117"
+    date: Mon, 28 Sep 2026 07:13:35 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "donorId": 1,
+        "name": "Arun Kumar Updated",
+        "email": "arunupdated@gmail.com",
+        "phone": "9876543211",
+        "address": "Coimbatore"
+      }
+order: 1790579620674

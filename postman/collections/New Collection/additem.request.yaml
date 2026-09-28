@@ -1,0 +1,22 @@
+$kind: http-request
+url: http://localhost:8080/donated-items
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Winter Jackets\",\r
+
+    \    \"category\": \"Clothes\",\r
+
+    \    \"itemCondition\": \"GOOD\",\r
+
+    \    \"quantity\": 20,\r
+
+    \    \"donorId\": 1,\r
+
+    \    \"driveId\": 1\r
+
+    }"
+examples: .resources/additem.resources/examples
+order: 1790578530264

@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:8080/donated-items/1
+method: DELETE
+examples: .resources/deleteitems.resources/examples
+order: 3897472618107034

@@ -1,0 +1,17 @@
+$kind: http-example
+request:
+  url: http://localhost:8080/donated-items/1
+  method: DELETE
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: text/plain;charset=UTF-8
+    content-length: "33"
+    date: Mon, 28 Sep 2026 06:59:14 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: text
+    content: Donated item deleted successfully
+order: 1790578759680

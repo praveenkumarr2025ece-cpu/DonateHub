@@ -1,0 +1,5 @@
+$kind: http-request
+url: http://localhost:8080/donated-items
+method: GET
+examples: .resources/getitems.resources/examples
+order: 84058618772842

@@ -1,0 +1,5 @@
+$kind: http-request
+url: " http://localhost:8080/donors/1"
+method: GET
+examples: .resources/get donars by id.resources/examples
+order: 4444565272713532

@@ -1,0 +1,28 @@
+$kind: http-example
+request:
+  url: http://localhost:8080/donated-items
+  method: GET
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: application/json
+    content-length: "127"
+    date: Mon, 28 Sep 2026 06:57:08 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      [
+        {
+          "donatedItemId": 1,
+          "name": "Winter Jackets",
+          "category": "Clothes",
+          "itemCondition": "GOOD",
+          "quantity": 20,
+          "donorId": 1,
+          "driveId": 1
+        }
+      ]
+order: 1790578633306

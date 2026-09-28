@@ -1,0 +1,43 @@
+$kind: http-example
+request:
+  url: http://localhost:8080/donated-items/1
+  method: PUT
+  body:
+    type: json
+    content: "{\r
+
+      \    \"name\": \"Winter Jackets\",\r
+
+      \    \"category\": \"Clothes\",\r
+
+      \    \"itemCondition\": \"NEW\",\r
+
+      \    \"quantity\": 25,\r
+
+      \    \"donorId\": 1,\r
+
+      \    \"driveId\": 1\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: application/json
+    content-length: "124"
+    date: Mon, 28 Sep 2026 06:58:31 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "donatedItemId": 1,
+        "name": "Winter Jackets",
+        "category": "Clothes",
+        "itemCondition": "NEW",
+        "quantity": 25,
+        "donorId": 1,
+        "driveId": 1
+      }
+order: 1790578715684

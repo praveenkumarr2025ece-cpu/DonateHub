@@ -1,0 +1,24 @@
+$kind: http-example
+request:
+  url: " http://localhost:8080/donors/1"
+  method: GET
+response:
+  statusCode: 200
+  statusText: ""
+  headers:
+    content-type: application/json
+    content-length: "99"
+    date: Mon, 28 Sep 2026 07:12:25 GMT
+    keep-alive: timeout=60
+    connection: keep-alive
+  body:
+    type: json
+    content: |-
+      {
+        "donorId": 1,
+        "name": "Arun Kumar",
+        "email": "arun@gmail.com",
+        "phone": "9876543210",
+        "address": "Chennai"
+      }
+order: 1790579551188

@@ -1,0 +1,18 @@
+$kind: http-request
+url: " http://localhost:8080/donors"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Arun Kumar\",\r
+
+    \    \"email\": \"arun@gmail.com\",\r
+
+    \    \"phone\": \"9876543210\",\r
+
+    \    \"address\": \"Chennai\"\r
+
+    }"
+examples: .resources/add donar.resources/examples
+order: 3985903878041533
